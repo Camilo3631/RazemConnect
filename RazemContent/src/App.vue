@@ -1,11 +1,19 @@
-<script setup></script>
-
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <SplashScreen v-if="loading"/>
+  <router-view v-else/>
 </template>
 
-<style scoped></style>
+
+<script setup>
+import {ref, onMounted } from 'vue';
+import SplashScreen from '@/components/SplashScreen.vue';
+
+const loading = ref(true);
+
+onMounted(() => {
+  setTimeout(() => {
+     loading.value = false
+  }, 2500);
+})
+</script>
+
