@@ -1,12 +1,13 @@
 <template>
   <SplashScreen v-if="loading"/>
-  <router-view v-else/>
+  <Layout v-else/>
 </template>
 
 
 <script setup>
 import {ref, onMounted } from 'vue';
 import SplashScreen from '@/components/SplashScreen.vue';
+import Layout from './components/Layout.vue';
 
 const loading = ref(true);
 

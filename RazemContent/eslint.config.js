@@ -25,6 +25,12 @@ export default defineConfig([
 
   js.configs.recommended,
   ...pluginVue.configs['flat/essential'],
+   {
+    files: ['src/**/*.vue'],
+    rules: {
+      'vue/multi-word-component-names': 'off'
+    }
+  },
 
   {
     ...pluginPlaywright.configs['flat/recommended'],
@@ -39,4 +45,5 @@ export default defineConfig([
   ...pluginOxlint.buildFromOxlintConfigFile('.oxlintrc.json'),
 
   skipFormatting,
+  
 ])

@@ -6,6 +6,12 @@ import App from '../App.vue'
 describe('App', () => {
   it('mounts renders properly', () => {
     const wrapper = mount(App)
-    expect(wrapper.text()).toContain('You did it!')
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  
+  it('contains RazemConnect', () => {
+    const wrapper = mount(App)
+    expect(wrapper.text()).toContain('RazemConnect')
   })
 })
