@@ -2,6 +2,9 @@
     <div class="h-screen w-full flex flex-col bg-slate-800 text-white">
       <Navbar />
 
+      <main class="flex-1">
+        <slot />
+       </main>
 
       <Footer />
     </div>
