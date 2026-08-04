@@ -40,3 +40,9 @@ __screenshots__/
 
 test-results/
 playwright-report/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
