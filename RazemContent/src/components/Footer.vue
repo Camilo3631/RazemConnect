@@ -6,7 +6,7 @@ addIcons(BiXLg, BiInstagram);
 </script>
 
 <template>
-   <footer class="border-t border-slate-700 py-6">
+   <footer class="border-t bg-slate-700 border-slate-700 py-6">
     <div class="max-w-7xl mx-auto flex flex-col items-center gap-3">
 
         <div class="flex items-center gap-6">
