@@ -1,13 +1,17 @@
 <template>
    <Layout>
     <div class="flex items-center justify-center px-8 py-19 mt-10">
-      <form class="bg-slate-500 p-5 rounded-2xl shadow-2xl max-w-xs w-full border border-slate-600">
+      <form @submit.prevent="handleSubmit" class="bg-slate-500 p-5 rounded-2xl shadow-2xl max-w-xs w-full border border-slate-600">
         <h1 class="text-xl font-bold text-blue-500 text-center mb-2">
           Login User
         </h1>
 
         <p class="text-slate-200 text-center mb-5 text-xs">
           Inciar sesión con tu cuenta
+        </p>
+
+        <p v-if="error" class="text-red-400 text-xs text-center mb-3">
+          {{ error }}
         </p>
      
 
@@ -48,8 +52,15 @@
           type="submit"
           class="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-2 rounded-xl transition duration-300 shadow-lg"
           >
-           Entrar
+          {{ loading ? 'Ingresando...': 'Entrar' }}
          </button>
+
+         <p class="text-center text-slate-300 text-xs mt-4">
+           ¿No tienes cuenta?
+           <RouterLink to="/register" class="text-blue-400 hover:text-blue-300 font-semibold">
+            Registrate aquí
+           </RouterLink>
+         </p>
        </form>
      </div>
   </Layout>
@@ -57,9 +68,12 @@
 
 <script setup>
 import { ref } from 'vue';
+import { RouterLink } from 'vue-router';
+
 import Layout from '@/components/Layout.vue';
 import { OhVueIcon, addIcons } from 'oh-vue-icons';
 import { FaEye, FaEyeSlash } from 'oh-vue-icons/icons';
+import { useLogin } from '@/composables/useLogin';
 
 addIcons(FaEye, FaEyeSlash)
 
@@ -67,9 +81,14 @@ const email = ref('');
 const password = ref('')
 const showPassword = ref(false)
 
+const { login, loading, error } = useLogin();
 
-
-
-
+const handleSubmit = async () => {
+  try {
+    await login(email.value, password.value)
+  } catch (err) {
+    console.error(err)
+  }
+}
 
 </script>
