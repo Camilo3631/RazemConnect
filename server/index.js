@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser';
 dotenv.config();
 
 import loginRouter from './routes/login.js';
+import registerRouter from './routes/register.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -23,6 +24,7 @@ app.use(cookieParser())
 app.use(express.json());  
 
 app.use("/api", loginRouter); 
+app.use('/api', registerRouter);
 
 
 await connectDB();
