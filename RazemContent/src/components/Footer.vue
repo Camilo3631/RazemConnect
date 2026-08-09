@@ -1,13 +1,6 @@
-<script setup>
-import { OhVueIcon, addIcons } from 'oh-vue-icons';
-import { BiXLg, BiInstagram } from 'oh-vue-icons/icons';
-
-addIcons(BiXLg, BiInstagram);
-</script>
-
 <template>
-   <footer class="border-t bg-slate-700 border-slate-700 py-6">
-    <div class="max-w-7xl mx-auto flex flex-col items-center gap-3">
+   <footer class="bg-slate-700 border-slate-700 py-3 px-6">
+    <div class="max-w-4xl mx-auto flex flex-col items-center gap-3">
 
         <div class="flex items-center gap-6">
            <a 
@@ -15,7 +8,7 @@ addIcons(BiXLg, BiInstagram);
             class="text-slate-400 hover:text-white transition-all duration-300 hover:scale-110"
             aria-label="X"
             >
-            <OhVueIcon name="bi-x-lg" scale="1.8" />
+            <OhVueIcon name="bi-x-lg" scale="1.2" />
           </a>
 
           <a 
@@ -23,7 +16,7 @@ addIcons(BiXLg, BiInstagram);
             class="text-slate-400 hover:text-pink-500 transition-all duration-300 hover:scale-110"
             aria-label="Instagram"
             >
-            <OhVueIcon name="bi-instagram" scale="1.8" />
+            <OhVueIcon name="bi-instagram" scale="1.2" />
           </a>
         </div>
 
@@ -34,6 +27,14 @@ addIcons(BiXLg, BiInstagram);
     </div>
   </footer>
 </template>
+
+
+<script setup>
+import { OhVueIcon, addIcons } from 'oh-vue-icons';
+import { BiXLg, BiInstagram } from 'oh-vue-icons/icons';
+
+addIcons(BiXLg, BiInstagram);
+</script>
 
 
 
