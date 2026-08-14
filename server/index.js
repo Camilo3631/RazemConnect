@@ -8,6 +8,9 @@ dotenv.config();
 
 import loginRouter from './routes/login.js';
 import registerRouter from './routes/register.js';
+import usersRouter from './routes/users.js';
+import contactsRouter from './routes/contacts.js';
+import messagesRouter from './routes/messages.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -25,6 +28,10 @@ app.use(express.json());
 
 app.use("/api", loginRouter); 
 app.use('/api', registerRouter);
+app.use('/api', usersRouter);
+app.use('/api', contactsRouter);
+app.use('/api', messagesRouter);
+
 
 
 await connectDB();
