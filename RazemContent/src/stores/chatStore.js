@@ -59,12 +59,12 @@ const useChatStore = defineStore('chat', () => {
              const messages = await messagesResponse.json()
 
            if (messages.length > 0) {
-              const last = messages.reduce((latset, messages) => {
-            if (!latset) return messages
+              const last = messages.reduce((latset, message) => {
+            if (!latset) return message
 
-             return new Date(messages.createdAt) >
+             return new Date(message.createdAt) >
                new Date(latset.createdAt)
-               ? messages
+               ? message
                : latset
               }, null)
 
