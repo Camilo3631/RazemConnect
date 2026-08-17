@@ -1,7 +1,7 @@
 <template>
     <nav ref="navRef" class="bg-slate-700 shadow-md px-6 py-3 relative">
        <div class="flex items-center justify-between">
-         <RouterLink to="/">
+         <RouterLink to="/dashboard">
             <img src="/Logo.png" alt="RazemConnect" class="h-14 w-auto" />
          </RouterLink>
 

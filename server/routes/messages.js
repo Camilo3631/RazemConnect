@@ -84,4 +84,38 @@ router.put('/messages/read/:userId1/:userId2', async (req, res) => {
    }
 });
 
+
+router.delete('/messages/:userId1/:userId2', async (req, res) => {
+  try {
+    const { userId1, userId2 } = req.params
+
+    const result = await req.app.locals.db
+      .collection('messages')
+      .deleteMany({
+        $or: [
+          {
+            senderId: userId1,
+            receiverId: userId2
+          },
+          {
+            senderId: userId2,
+            receiverId: userId1
+          }
+        ]
+      })
+
+    res.json({
+      message: 'Chat vaciado correctamente',
+      deletedCount: result.deletedCount
+    })
+
+  } catch (error) {
+    console.log(error)
+
+    res.status(500).json({
+      error: error.message
+    })
+  }
+})
+
 export default router;

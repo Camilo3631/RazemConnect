@@ -63,13 +63,13 @@ router.get('/contacts/:userId', async (req, res) => {
    }
 });
 
-router.delete('/conects/:userId/:contactId', async (req, res) => {
+router.delete('/contacts/:userId/:contactId', async (req, res) => {
   try {
-     const { userId, contectId } = req.params;
+     const { userId, contactId  } = req.params;
 
      const result = await req.app.locals.db
        .collection('contacts')
-       .deleteOne({ userId, contectId });
+       .deleteOne({ userId, contactId  });
 
      if (result.deletedCount === 0) {
        return res.status(404).json({
@@ -84,7 +84,7 @@ router.delete('/conects/:userId/:contactId', async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({
-      error: error.mesaage
+      error: error.message
     });
    }  
  });

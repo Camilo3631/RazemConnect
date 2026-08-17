@@ -53,4 +53,57 @@ router.get('/users/me', async (req, res) => {
    } 
 });
 
+router.put('/users/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { username } = req.body;
+
+    if (!username) {
+      return res.status(400).json({
+        message: 'El nombre es obligatorio'
+      })
+    }
+
+    await req.app.locals.db
+     .collection('users')
+     .updateOne(
+      { _id: new ObjectId(id) },
+      { $set: { username } }
+     );
+
+    res.json({ message: 'Nombre actualizado correctamente' });
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      error: error.message  
+     });
+   }
+});
+
+router.delete('/users/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const result = await req.app.locals.db 
+     .collection('users')
+     .deleteOne({ _id: new ObjectId(id) })
+     
+    if (result.deleteCount === 0) {
+     return res.status(404).json({
+       message: 'Usuario no encontrado'
+     });
+    }
+
+    res.clearCookie('token');
+    res.json({ message: 'Cuenta elimianda exitosamente' })
+
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({
+      error: error.message
+    })
+  }
+})
+
 export default router;
