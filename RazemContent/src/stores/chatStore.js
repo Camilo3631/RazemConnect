@@ -75,12 +75,13 @@ const useChatStore = defineStore('chat', () => {
 
               date = messageDate.toLocaleDateString('es-ES', {
                day: '2-digit',
-               month: '2-digit'
+               month: '2-digit',
               })
 
               time = messageDate.toLocaleTimeString('es-ES', {
                hour: '2-digit',
-               minute: '2-digit'
+               minute: '2-digit',
+               hour12: false
              })
             }
            }

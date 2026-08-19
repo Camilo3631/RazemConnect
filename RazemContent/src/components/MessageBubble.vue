@@ -12,7 +12,10 @@
           v-if="isOwn"
           name="bi-check2"
           scale="0.8"
-          :class="message.read ? 'text-[#DC143C]' : 'text-blue-200'"
+          :class="{
+           'text-[#DC143C]': message.read === true,
+           'text-blue-200': message.read !== true
+          }"
         />
       </div>
     </div>

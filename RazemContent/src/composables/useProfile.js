@@ -2,7 +2,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useDashboard } from '@/composables/useDashboard'
 
-export function useProfile() {
+const useProfile = () =>  {
   const router = useRouter()
   const { currentUser } = useDashboard()
 
@@ -97,3 +97,5 @@ export function useProfile() {
     deleteAccount
   }
 }
+
+export { useProfile }

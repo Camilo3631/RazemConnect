@@ -54,7 +54,7 @@ const useRegister = () => {
 }
 
 
-export {useRegister}
+export { useRegister }
 
 
 

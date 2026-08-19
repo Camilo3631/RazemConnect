@@ -1,6 +1,14 @@
 import { ref } from 'vue'
+//import { useSocket } from '@/composables/useSocket';
 
 const useMessages = () => {
+
+ //  const { socket } = useSocket()
+
+  //  socket.on('connect', () => {
+  //   console.log('🟢 Conectado a Socket.IO:', socket.id)
+  // })
+  
   const messages = ref([])
   const loading = ref(false)
   const error = ref(null)

@@ -1,0 +1,34 @@
+import { io } from 'socket.io-client'
+
+const socket = io('http://localhost:3000', {
+  withCredentials: true
+})
+
+socket.on('connect', () => {
+  console.log(
+    '🟢 Socket conectado:',
+    socket.id
+  )
+})
+
+socket.on('disconnect', (reason) => {
+  console.log(
+    '🔴 Socket desconectado:',
+    reason
+  )
+})
+
+socket.on('connect_error', (error) => {
+  console.error(
+    '🔴 Error Socket.IO:',
+    error.message
+  )
+})
+
+const useSocket = () => {
+  return {
+    socket
+  }
+}
+
+export { useSocket }

@@ -1,6 +1,5 @@
 import { ref } from 'vue'
 
-
 const currentUser = ref({
   name: 'Cargando...',
   id: null,
@@ -10,7 +9,7 @@ const currentUser = ref({
 const loading = ref(false)
 const error = ref(null)
 
-export function useUsersMe() {
+const useUsersMe = () => {
 
   const fetchCurrentUser = async (forceRefresh = false) => {
 
@@ -86,3 +85,5 @@ export function useUsersMe() {
     clearUser
   }
 }
+
+export  { useUsersMe}
