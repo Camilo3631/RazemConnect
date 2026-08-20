@@ -30,8 +30,8 @@ const useAuthStore = defineStore('auth', ()  => {
         email: data.email
         }
       } catch (err) {
-        error.value = err.mesage
-        currentUser.value = { name: 'Invitado', _id: null }
+        error.value = err.message
+        currentUser.value = { name: 'Invitado', id: null }
       } finally {
         loading.value = false
       }
