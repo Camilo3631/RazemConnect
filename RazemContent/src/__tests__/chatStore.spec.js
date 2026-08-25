@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi  } from "vitest";
 import { createPinia, setActivePinia } from "pinia";
 import { useChatStore,  } from "@/stores/chatStore";
-import js from "@eslint/js";
+
 
 describe('ChatStore', () => {
      beforeEach(() => {
