@@ -2,6 +2,8 @@ import { Router } from 'express';
 import jwt from 'jsonwebtoken';
 import { ObjectId } from 'mongodb';
 
+import { cookieOptions } from '../config/cookies.js';
+
 const router = Router();
 
 router.get('/users', async (req, res) => {
@@ -95,7 +97,7 @@ router.delete('/users/:id', async (req, res) => {
      });
     }
 
-    res.clearCookie('token');
+    res.clearCookie('token', cookieOptions);
     res.json({ message: 'Cuenta elimianda exitosamente' })
 
   } catch (error) {

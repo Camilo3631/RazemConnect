@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: razemconnect-api
+    runtime: node
+    rootDir: server
+    plan: free
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /api/users
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MongoURI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: FRONTEND_URL
+        sync: false

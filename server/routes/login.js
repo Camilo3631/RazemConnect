@@ -2,6 +2,8 @@ import { Router } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
+import { cookieOptions } from '../config/cookies.js';
+
 const router = Router();
 
 router.post('/login', async (req, res) => {
@@ -40,8 +42,7 @@ router.post('/login', async (req, res) => {
 
 
        res.cookie('token', token, { 
-           httpOnly: true,
-           secure: process.env.NODE_ENV === 'production',
+           ...cookieOptions,
            maxAge: 24 * 60 * 60 * 1000
         });
 
