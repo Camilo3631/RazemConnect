@@ -6,8 +6,6 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 
-dotenv.config();
-
 import loginRouter from './routes/login.js';
 import registerRouter from './routes/register.js';
 import usersRouter from './routes/users.js';
@@ -15,26 +13,26 @@ import contactsRouter from './routes/contacts.js';
 import messagesRouter from './routes/messages.js';
 import { socketManager } from './managers/socketManager.js';
 
-const app = express();
+dotenv.config();
 
+const app = express();
 const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
   cors: {
-    origin: 'http://localhost:5173',
+    origin: process.env.FRONTEND_URL || 'http://localhost:5173',
     credentials: true
   }
 });
 
-
 app.locals.io = io;
 
-const PORT = process.env.PORT || 3000;
-
-app.use(cors({
-  origin: 'http://localhost:5173',
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+    credentials: true
+  })
+);
 
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -46,21 +44,29 @@ app.use('/api', usersRouter);
 app.use('/api', contactsRouter);
 app.use('/api', messagesRouter);
 
-
 socketManager(io);
-
-await connectDB();
-
-httpServer.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`);
-});
 
 async function connectDB() {
   const client = new MongoClient(process.env.MongoURI);
+
+  await client.connect();
 
   app.locals.db = client.db('razem_chat');
 
   console.log('✅ Connected to MongoDB');
 }
+
+const PORT = process.env.PORT || 3000;
+
+connectDB()
+  .then(() => {
+    httpServer.listen(PORT, () => {
+      console.log(`🚀 Server running on port ${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error('❌ MongoDB connection error:', error);
+    process.exit(1);
+  });
 
 export default app;
