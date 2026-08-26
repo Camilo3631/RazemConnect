@@ -198,7 +198,7 @@ const useDashboard = () => {
       return
     }
 
-    console.log('🔴 EVENTO messages-read:', data)
+  
 
     const userId = String(data.userId)
     const contactId = String(data.contactId)
