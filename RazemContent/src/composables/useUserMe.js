@@ -10,10 +10,7 @@ const loading = ref(false)
 const error = ref(null)
 
 const useUsersMe = () => {
-
   const fetchCurrentUser = async (forceRefresh = false) => {
-
-  
     if (
       loading.value ||
       (!forceRefresh && currentUser.value.id)
@@ -40,7 +37,6 @@ const useUsersMe = () => {
         )
       }
 
-
       currentUser.value = {
         name: data.username,
         id: data._id,
@@ -48,9 +44,7 @@ const useUsersMe = () => {
       }
 
       return data
-
     } catch (err) {
-
       error.value = err.message
 
       currentUser.value = {
@@ -60,12 +54,10 @@ const useUsersMe = () => {
       }
 
       throw err
-
     } finally {
       loading.value = false
     }
   }
-
 
   const clearUser = () => {
     currentUser.value = {
@@ -86,4 +78,4 @@ const useUsersMe = () => {
   }
 }
 
-export  { useUsersMe }
+export { useUsersMe }
