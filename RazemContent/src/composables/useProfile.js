@@ -2,12 +2,14 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useDashboard } from '@/composables/useDashboard'
 
-const useProfile = () =>  {
+const useProfile = () => {
   const router = useRouter()
   const { currentUser } = useDashboard()
 
   const editingName = ref(false)
   const editedName = ref('')
+
+  const apiUrl = import.meta.env.VITE_API_URL
 
   const editName = () => {
     editedName.value = currentUser.value.name
@@ -33,8 +35,6 @@ const useProfile = () =>  {
     }
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000'
-
       const response = await fetch(
         `${apiUrl}/api/users/${currentUser.value.id}`,
         {
@@ -56,7 +56,11 @@ const useProfile = () =>  {
       editingName.value = false
 
     } catch (error) {
-      console.error('Error al actualizar nombre:', error)
+      console.error(
+        'Error al actualizar nombre:',
+        error
+      )
+
       editingName.value = false
     }
   }
@@ -67,8 +71,6 @@ const useProfile = () =>  {
     }
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000'
-
       const response = await fetch(
         `${apiUrl}/api/users/${currentUser.value.id}`,
         {
@@ -84,7 +86,10 @@ const useProfile = () =>  {
       await router.push('/home')
 
     } catch (error) {
-      console.error('Error al eliminar la cuenta:', error)
+      console.error(
+        'Error al eliminar la cuenta:',
+        error
+      )
     }
   }
 

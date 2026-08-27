@@ -20,7 +20,7 @@ const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
   cors: {
-    origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+    origin: process.env.FRONTEND_URL || 'https://razemconnect.vercel.app',
     credentials: true
   }
 });
@@ -29,7 +29,7 @@ app.locals.io = io;
 
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+    origin: process.env.FRONTEND_URL || 'https://razemconnect.vercel.app',
     credentials: true
   })
 );

@@ -23,7 +23,8 @@ const useDashboard = () => {
 
   const currentUser = ref({
     name: 'Cargando...',
-    id: null
+    id: null,
+    email: null
   })
 
   const selectedChat = ref(null)
@@ -32,6 +33,8 @@ const useDashboard = () => {
   const searchQuery = ref('')
   const showAddContact = ref(false)
   const userSearchQuery = ref('')
+
+  const apiUrl = import.meta.env.VITE_API_URL
 
   const filteredUsers = computed(() => {
     return users.value.filter(
@@ -53,10 +56,6 @@ const useDashboard = () => {
 
   const loadCurrentUser = async () => {
     try {
-      const apiUrl =
-        import.meta.env.VITE_API_URL ||
-        'http://localhost:3000'
-
       const response = await fetch(
         `${apiUrl}/api/users/me`,
         {
@@ -68,7 +67,8 @@ const useDashboard = () => {
       if (!response.ok) {
         currentUser.value = {
           name: 'Invitado',
-          id: null
+          id: null,
+          email: null
         }
 
         return
@@ -99,7 +99,8 @@ const useDashboard = () => {
 
       currentUser.value = {
         name: 'Error',
-        id: null
+        id: null,
+        email: null
       }
     }
   }
@@ -125,7 +126,6 @@ const useDashboard = () => {
       ? message.receiverId
       : message.senderId
 
-    
     if (
       selectedChat.value &&
       String(selectedChat.value.id) ===
@@ -140,13 +140,8 @@ const useDashboard = () => {
       if (!alreadyExists) {
         messages.value.push(message)
 
-       
         if (isForCurrentUser) {
           try {
-            const apiUrl =
-              import.meta.env.VITE_API_URL ||
-              'http://localhost:3000'
-
             await fetch(
               `${apiUrl}/api/messages/read/${currentUser.value.id}/${otherUserId}`,
               {
@@ -155,12 +150,14 @@ const useDashboard = () => {
               }
             )
           } catch (err) {
-            console.error('Error al marcar leído automáticamente:', err)
+            console.error(
+              'Error al marcar leído automáticamente:',
+              err
+            )
           }
         }
       }
     }
-
 
     const chat = chats.value.find(
       chat =>
@@ -179,7 +176,6 @@ const useDashboard = () => {
         hour12: false
       })
 
-    
       if (
         isForCurrentUser &&
         (
@@ -198,20 +194,22 @@ const useDashboard = () => {
       return
     }
 
-  
-
     const userId = String(data.userId)
     const contactId = String(data.contactId)
     const currentUserId = String(currentUser.value.id)
 
-    
     messages.value = messages.value.map(message => {
       const senderId = String(message.senderId)
       const receiverId = String(message.receiverId)
 
-    
-      if (senderId === currentUserId && receiverId === userId) {
-        return { ...message, read: true }
+      if (
+        senderId === currentUserId &&
+        receiverId === userId
+      ) {
+        return {
+          ...message,
+          read: true
+        }
       }
 
       return message
@@ -239,10 +237,6 @@ const useDashboard = () => {
     }
 
     try {
-      const apiUrl =
-        import.meta.env.VITE_API_URL ||
-        'http://localhost:3000'
-
       await loadMessages(
         currentUser.value.id,
         chat.id
