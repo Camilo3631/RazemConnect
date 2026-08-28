@@ -70,6 +70,11 @@ describe('useDashboard', () => {
         chats.value = []
         users.value = []
         messages.value = []
+
+        vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
+          ok: false,
+          json: async () => ({})
+        })) 
     })
 
     it('has the correct initial state', () => {
@@ -77,7 +82,8 @@ describe('useDashboard', () => {
 
         expect(currentUser.value).toEqual({
           name: 'Cargando...',
-          id: null
+          id: null,
+          email: null
         })
         expect(selectedChat.value).toBe(null)
         expect(messageText.value).toBe('')        
