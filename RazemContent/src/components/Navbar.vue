@@ -1,7 +1,7 @@
 <template>
   <nav ref="navRef" class="bg-slate-700 shadow-md px-6 py-3 relative">
     <div class="flex items-center justify-between">
-      <RouterLink to="/dashboard">
+      <RouterLink :to="isInsideApp ? '/dashboard' : '/'">
         <img src="/Logo.png" alt="RazemConnect" class="h-14 w-auto"/>
       </RouterLink>
       <button
