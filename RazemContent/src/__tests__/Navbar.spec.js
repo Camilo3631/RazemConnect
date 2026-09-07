@@ -63,7 +63,7 @@ describe('Navbar', () => {
         }) 
         await wrapper.find('button').trigger('click')
         expect(wrapper.text()).toContain('Iniciar sesión')
-        expect(wrapper.text()).toContain('Crear cuenta')     
+        expect(wrapper.text()).toContain('Registrarse')     
     })
 })
 
