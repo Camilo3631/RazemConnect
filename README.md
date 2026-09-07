@@ -6,11 +6,11 @@ Aplicación de chat en tiempo real construida con Vue.js y Node.js. Permite a lo
 
 | Home                         | Dashboard                                   |
 | ---------------------------- | ------------------------------------------- |
-| [Home](./screenshots/home.png) | [Dashboard](./screenshots/dashboard-chat.png) |
+| ![Home](./screenshots/home.png) | ![Dashboard](./screenshots/dashboard-chat.png) |
 
 | Selección de chat                                        | Perfil                            |
 | -------------------------------------------------------- | --------------------------------- |
-| [Sin chat seleccionado](./screenshots/dashboard-empty.png) | [Perfil](./screenshots/profile.png) |
+| ![Sin chat seleccionado](./screenshots/dashboard-empty.png) | ![Perfil](./screenshots/profile.png) |
 
 ## Características
 
