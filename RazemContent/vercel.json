@@ -1,5 +1,6 @@
 {
   "rewrites": [
+    { "source": "/socket.io/(.*)", "destination": "https://razemconnect.onrender.com/socket.io/$1" },
     { "source": "/api/(.*)", "destination": "https://razemconnect.onrender.com/api/$1" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]

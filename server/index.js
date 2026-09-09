@@ -22,7 +22,11 @@ const io = new Server(httpServer, {
   cors: {
     origin: process.env.FRONTEND_URL || 'https://razemconnect.vercel.app',
     credentials: true
-  }
+  },
+  path: '/socket.io/',
+  allowEIO3: true,
+  pingTimeout: 60000,
+  pingInterval: 25000
 });
 
 app.locals.io = io;
