@@ -2,8 +2,12 @@ import { io } from 'socket.io-client'
 
 const socket = io(import.meta.env.VITE_SOCKET_URL, {
   withCredentials: true,
-  transports: ['polling'],
-  upgrade: false
+  transports: ['websocket', 'polling'],  // ✅ Cambio aquí
+  upgrade: true,
+  reconnection: true,           // ✅ Reconectar automático
+  reconnectionDelay: 1000,      // ✅ Esperar 1s antes de reconectar
+  reconnectionDelayMax: 5000,   // ✅ Máximo 5s de espera
+  reconnectionAttempts: Infinity // 
 })
 
 socket.on('connect', () => {
